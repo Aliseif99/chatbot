@@ -120,6 +120,7 @@
 .builder-fixed-item small{font-size:12px;color:#a9bdd2;display:block;margin-top:4px}
 .builder-mode-two{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:650px){.builder-subjects.builder-subjects-three{grid-template-columns:1fr}.builder-subjects-three .builder-pick{min-height:62px;flex-direction:row;align-items:center;justify-content:flex-start}.builder-fixed-item{padding:12px;gap:8px}.builder-fixed-item strong{font-size:19px}.builder-mode-two{grid-template-columns:1fr}}
+.review-panel{margin-bottom:22px}.review-list{display:grid;gap:12px;margin-top:16px}.review-item{border:1px solid #465a6c;background:#1b2b40;border-radius:14px;padding:17px}.review-item.correct{border-right:4px solid #65bca6}.review-item.wrong{border-right:4px solid #d18f83}.review-item h3{font-size:17px;line-height:1.65;margin:7px 0 12px}.review-answer{padding:10px;border-radius:8px;background:#273b50;margin-top:8px;line-height:1.6}.review-answer b{color:#efd29d}.review-flag{width:210px;max-width:100%;height:110px;object-fit:contain;display:block;margin:9px auto;filter:drop-shadow(0 9px 13px #0009)}.review-caption{color:#acc0d4;font-size:12px;margin:12px 0}
 </style>
 </head>
 <body>
@@ -160,6 +161,7 @@
   let hostToken = '', playerToken = '', hostEntry = '', busy = false, fetching = false, questionIndex = 0, finalConfirm = false;
   let offset = 0, lastHeartbeat = 0, activeQuiz = false, lastAlert = 0, ended = false, lastServerStatus = '', channel = null;
   let timerId = null, blurTimer = null, pollTimer = null;
+  let reviewUI={open:false,loading:false,data:null,message:''};
   let subjects=['math'];
   const questionCount=10, durationMinutes=30;
   let profileUI={open:false,name:'',accountId:'',loading:false,data:null,error:''};
@@ -232,7 +234,27 @@ ${btn('select-live','منافسة مباشرة',mode==='live'?'':'secondary')}
     const now=Math.max(0,Math.ceil((Date.parse(p.deadline)-Date.now()-offset)/1000));
     return `<div class="quiz-wrap"><div class="quiz-top"><div><div class="eyebrow">${escape(current.room.title)}</div><h2>اختبار ${escape(p.name)}</h2><p class="muted">${q.subject==='geo'?'تحدي الجغرافيا':'الرياضيات والذكاء'} · سؤال ${questionIndex+1} من ${total}</p></div><div class="quiz-timer" id="timer-box"><small>الوقت المتبقي</small><b id="time-left" dir="ltr">${formatTime(now)}</b></div></div><div class="quiz-progress"><span>التقدم: ${answered} / ${total}</span><span>${(100/total).toFixed(1)} نقطة لكل سؤال</span></div><progress class="progress" max="${total}" value="${answered}"></progress><div class="question-map">${jumps}</div>${card(`<div class="eyebrow">${escape(q.category || 'استدلال ذهني')}</div><h2>${escape(q.prompt)}</h2>${q.flag_code&&/^[A-Z]{2}$/.test(q.flag_code)?`<figure class="flag-image-panel"><img src="https://flagcdn.com/w320/${q.flag_code.toLowerCase()}.png" alt="علم الدولة المطلوب التعرف عليها"><figcaption>ما الإجابة الصحيحة؟</figcaption></figure>`:''}${q.svg?`<div class="diagram">${q.svg}</div>`:''}<div class="options">${options}</div><div class="question-actions">${btn('prev','السابق →','secondary',questionIndex===0||busy)}${questionIndex<total-1?btn('next','التالي ←','',busy):btn('confirm-finish','تسليم الإجابات','',busy)}</div><div style="margin-top:12px">${btn('confirm-finish','إنهاء وتسليم الآن','text sm',busy)}</div>`,'question-card')}<div class="notice">تُحسب الإجابات غير المُجاب عنها خطأً. بعد التسليم لا يُسمح بتعديل النتيجة. مغادرة هذه الصفحة أثناء الاختبار تُظهر حالة «غشاش 👀» ودرجة صفر.</div>${finalConfirm?`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true"><div class="eyebrow">التسليم النهائي</div><h2>تأكيد إنهاء الاختبار</h2><p>أجبت عن ${answered} من أصل ${total} أسئلة. هل ترغب في اعتماد إجاباتك الآن؟</p><div class="actions">${btn('finish','تأكيد التسليم')}${btn('cancel-finish','متابعة الإجابة','secondary')}</div></section></div>`:''}</div>`;
   }
-  function result(){const p=current.player,failed=p.status==='cheated',eliminated=p.status==='eliminated';return `<div class="room-page">${card(`<div class="result-ornament">${failed?'×':'◇'}</div><div class="overline">النتيجة النهائية · ${escape(current.room.title)}</div><h1>${failed?'غشاش 👀 — اتقفشت!':eliminated?'خلصت جولتك — استنّى الجولة القادمة!':'اكتملت مشاركتك بنجاح'}</h1><p class="muted">${failed?'ظهر تنبيه المغادرة أثناء الحل، وبالتالي أصبحت درجتك صفرًا حسب قواعد الجولة.':eliminated?'لم تتأهل للجولة القادمة، ولكن تقدر تتابع البطولة وتشجع أصحابك.':escape(p.name)+'، تم تصحيح إجاباتك وتسجيل نتيجتك في المجموعة.'}</p>${failed?'<div class="cheater-note">الاسم على سبيل المزاح بين الأصدقاء، وليس اتهامًا مؤكدًا: أحيانًا تتسبب الإشعارات أو انقطاعات الاتصال في هذا التنبيه.</div>':''}<div class="result-score">${escape(p.score??0)}<small>/100</small></div><p class="muted">النموذج ${String(p.model).padStart(2,'0')} · الجولة ${escape(current.room.round)}</p><div class="btn-row">${btn('show-board','عرض ترتيب المجموعة')}${btn('profile-self','بطاقة إنجازاتي','secondary')}${btn('home','إنشاء تحدٍ جديد','secondary')}</div>`,'result')}<div class="section">${standings()}${invite()}</div></div>`;}
+  function reviewFormatOption(v){const text=String(v??'');if(text.startsWith('FLAG:')&&/^[A-Z]{2}$/.test(text.slice(5)))return '<img class="review-flag" alt="علم الدولة" src="https://flagcdn.com/w320/'+text.slice(5).toLowerCase()+'.png">';return escape(text);}
+  function reviewContent(){if(!reviewUI.open)return '';const d=reviewUI.data;let content='';
+    if(reviewUI.loading)content='<p class="muted">جارٍ تحميل الإجابات بعد التحقق من إتمام المسابقة…</p>';
+    else if(reviewUI.message)content='<p class="muted">'+escape(reviewUI.message)+'</p>';
+    else if(d&&d.status==='ready'&&Array.isArray(d.items)){content='<p class="review-caption">صحيح: '+escape(d.correct)+' · خطأ: '+escape(d.wrong)+' · بدون إجابة: '+escape(d.unanswered)+'</p><div class="review-list">';
+      d.items.forEach((it,i)=>{const q=it.question||{},opts=Array.isArray(q.options)?q.options:[],a=it.user_answer===null?null:Number(it.user_answer),c=Number(it.correct_index),ok=it.is_correct===true;let html='<article class="review-item '+(ok?'correct':'wrong')+'"><div class="eyebrow">السؤال '+(i+1)+' · '+(ok?'إجابة صحيحة ✓':'محتاج تراجع الإجابة')+'</div><h3>'+escape(q.prompt||'')+'</h3>';
+        if(q.flag_code&&/^[A-Z]{2}$/.test(q.flag_code))html+='<img class="review-flag" src="https://flagcdn.com/w320/'+q.flag_code.toLowerCase()+'.png" alt="علم السؤال">';
+        if(q.svg)html+='<div class="diagram">'+q.svg+'</div>';
+        html+='<div class="review-answer"><b>إجابتك: </b>'+(a===null?'لم تُجب':a>=0&&a<opts.length?reviewFormatOption(opts[a]):'غير متاحة')+'</div>';
+        html+='<div class="review-answer"><b>الإجابة الصحيحة: </b>'+(c>=0&&c<opts.length?reviewFormatOption(opts[c]):'غير متاحة')+'</div>';
+        if(q.explanation)html+='<p class="review-caption">'+escape(q.explanation)+'</p>';content+=html+'</article>';});content+='</div><p class="review-caption">تظهر الإجابات بعد إنهاء مشاركتك، وبعد انتهاء باقي اللاعبين في البطولات المباشرة.</p>';}
+    else content='<p class="muted">المراجعة غير متاحة لهذه الجولة.</p>';
+    return card('<div class="panel-head"><h2>راجع الأسئلة واتعلم من أخطائك</h2>'+btn('review-hide','إخفاء المراجعة','secondary sm')+'</div>'+content,'review-panel');}
+  async function reviewLoad(){if(current?.player?.status!=='finished'||!playerToken)return notify('المراجعة متاحة فقط بعد إتمام الاختبار.');
+    reviewUI={open:true,loading:true,data:null,message:''};render();
+    try{const apiUrl=API.replace('/challenge_portal','/challenge_review');const response=await fetch(apiUrl,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify({_room:roomId,_token:playerToken}),cache:'no-store'});
+      const data=await response.json();if(!response.ok)reviewUI.message='مراجعة الإجابات لم تُفعّل على الخادم بعد. نتيجة المسابقة محفوظة، ولا يمكن كشف الإجابات قبل اكتمال حماية المراجعة.';
+      else if(data.status==='pending')reviewUI.message='تظهر الإجابات بعد انتهاء جميع اللاعبين في الجولة، لحماية المنافسة من الغش.';
+      else if(data.status==='ready'&&Array.isArray(data.items))reviewUI.data=data;else reviewUI.message='البيانات التي رجعت من الخادم غير صالحة للمراجعة.';
+    }catch{reviewUI.message='تعذر الوصول لخدمة المراجعة الآن.';}finally{reviewUI.loading=false;render();}}
+  function result(){const p=current.player,failed=p.status==='cheated',eliminated=p.status==='eliminated';return `<div class="room-page">${card(`<div class="result-ornament">${failed?'×':'◇'}</div><div class="overline">النتيجة النهائية · ${escape(current.room.title)}</div><h1>${failed?'غشاش 👀 — اتقفشت!':eliminated?'خلصت جولتك — استنّى الجولة القادمة!':'اكتملت مشاركتك بنجاح'}</h1><p class="muted">${failed?'ظهر تنبيه المغادرة أثناء الحل، وبالتالي أصبحت درجتك صفرًا حسب قواعد الجولة.':eliminated?'لم تتأهل للجولة القادمة، ولكن تقدر تتابع البطولة وتشجع أصحابك.':escape(p.name)+'، تم تصحيح إجاباتك وتسجيل نتيجتك في المجموعة.'}</p>${failed?'<div class="cheater-note">الاسم على سبيل المزاح بين الأصدقاء، وليس اتهامًا مؤكدًا: أحيانًا تتسبب الإشعارات أو انقطاعات الاتصال في هذا التنبيه.</div>':''}<div class="result-score">${escape(p.score??0)}<small>/100</small></div><p class="muted">النموذج ${String(p.model).padStart(2,'0')} · الجولة ${escape(current.room.round)}</p><div class="btn-row">${p.status==='finished'?btn('review-load','مراجعة إجاباتي','secondary'):''}${btn('show-board','عرض ترتيب المجموعة')}${btn('profile-self','بطاقة إنجازاتي','secondary')}${btn('home','إنشاء تحدٍ جديد','secondary')}</div>`,'result')}<div class="section">${reviewContent()}${standings()}${invite()}</div></div>`;}
   function host(){if(!current){return `<div class="boot"><div class="spinner"></div>جارٍ التحقق من بيانات الغرفة</div>`;}
     const r=current.room, players=current.players||[],hp=current.host_players||[];
     const controls=`${r.mode!=='open'&&r.status==='waiting'?btn('host-start',r.mode==='knockout'?'بدء المرحلة '+r.round:'بدء البطولة الآن','',busy||!players.length):''}${r.mode==='knockout'&&r.status==='running'&&players.length&&players.every(p=>['finished','cheated'].includes(p.status))?btn('host-advance','إعلان المتأهلين للجولة التالية ←','',busy):''}${btn('host-close','إغلاق التسجيل','secondary',busy||r.status==='closed')}${btn('host-reset','فتح جولة جديدة','secondary',busy||players.some(x=>x.status==='in_progress'))}${btn('download','تصدير النتائج CSV','secondary',!hp.length)}${btn('participant','عرض صفحة اللاعبين','text')}`;
@@ -329,7 +351,7 @@ ${btn('select-live','منافسة مباشرة',mode==='live'?'':'secondary')}
   function route(){const params=new URL(location.href).searchParams;const candidate=params.get('room')||'';const valid=/^[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}$/i.test(candidate);
     if(!valid){screen='home';roomId='';current=null;hostToken='';playerToken='';activeQuiz=false;render();return;}
     if(activeQuiz && candidate!==roomId)detectedExit();
-    if(candidate!==roomId){roomId=candidate;current=null;questionIndex=0;finalConfirm=false;}
+    if(candidate!==roomId){reviewUI={open:false,loading:false,data:null,message:''};roomId=candidate;current=null;questionIndex=0;finalConfirm=false;}
     playerToken=read('player:'+roomId);hostToken=read('host:'+roomId);const enteringHost=params.has('host');screen=enteringHost?'host':'room';if(!enteringHost&&playerToken&&read('active:'+roomId))write('left:'+roomId,'1');
     render();void refresh(true);
   }
@@ -357,6 +379,8 @@ ${btn('select-live','منافسة مباشرة',mode==='live'?'':'secondary')}
     if(a==='confirm-finish'){finalConfirm=true;render();return;}
     if(a==='cancel-finish'){finalConfirm=false;render();return;}
     if(a==='finish'){finalConfirm=false;await act('finish');return;}
+    if(a==='review-load'){await reviewLoad();return;}
+    if(a==='review-hide'){reviewUI.open=false;render();return;}
     if(a==='show-board'){document.querySelector('.board')?.scrollIntoView({behavior:'smooth'});return;}
     if(a==='host-start'&&confirm('سيبدأ العد التنازلي 10 ثوانٍ لكل المشاركين. بدء البطولة الآن؟')){await act('host_start');return;}
     if(a==='host-close'&&confirm('إغلاق التسجيل للغرفة؟')){await act('host_close');return;}
