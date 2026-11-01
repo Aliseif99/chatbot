@@ -18,6 +18,52 @@
 
 @media(max-width:620px){.question-map{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px}.q-jump{width:100%;font-size:12px;padding:0}.quiz-top h2{font-size:21px}}
 
+
+/* IQ LEAGUE — premium player identity and achievement card */
+.profile-name-trigger{appearance:none;border:0;background:none;color:inherit;font:inherit;font-weight:800;cursor:pointer;padding:6px 2px;border-bottom:1px solid transparent;display:inline-flex;gap:6px;align-items:center;transition:color .18s,border-color .18s}
+.profile-name-trigger:hover,.profile-name-trigger:focus-visible{color:var(--gold,#d7b483);border-color:#caac78;outline:none}
+.profile-open-icon{font-size:12px;opacity:.6}
+.profile-button{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#27374c;border:1px solid #8a7b65;color:#eed5a7;border-radius:12px;padding:10px 16px;font-weight:800;font:inherit;cursor:pointer;transition:all .16s}
+.profile-button:hover{background:#34455d;border-color:#d7b483}
+.profile-backdrop{position:fixed;z-index:2000;inset:0;background:rgba(3,10,19,.84);backdrop-filter:blur(10px);display:flex;justify-content:center;align-items:flex-start;overflow-y:auto;padding:28px 14px}
+.profile-panel{width:min(860px,100%);margin:auto;background:linear-gradient(145deg,#19283c 0%,#101b2b 100%);border:1px solid #827052;border-radius:23px;box-shadow:0 35px 110px rgba(0,0,0,.65);color:#edf2fa;overflow:hidden;position:relative}
+.profile-panel:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,#8b7859,#e4cd9e,#677c92);pointer-events:none}
+.profile-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:23px 28px 0}
+.profile-overline{letter-spacing:2px;color:#d6b990;font-size:11px;font-weight:900}
+.profile-exit{appearance:none;background:transparent;border:1px solid #4a5b6d;border-radius:10px;color:#d6e0ee;padding:6px 14px;cursor:pointer;font:inherit}
+.profile-exit:hover{border-color:#c4a777;color:#fff}
+.profile-cover{padding:20px 30px 22px;display:flex;gap:22px;align-items:center}
+.profile-avatar{width:105px;height:105px;border-radius:25px;background:linear-gradient(140deg,#baa47a 0%,#6e614b 45%,#233346 100%);padding:4px;box-shadow:0 10px 30px #0005;flex-shrink:0}
+.profile-avatar>span{width:100%;height:100%;display:grid;place-items:center;border-radius:21px;background:#1a293d;font-size:46px;color:#f0d6a6;font-weight:900}
+.profile-identity{min-width:0;flex:1}
+.profile-identity h2{font-size:clamp(25px,4vw,37px);word-break:break-word;margin:7px 0}
+.profile-identity p{color:#9eadc2;font-size:14px}
+.profile-account-tag{border:1px solid #4f826d;background:#233f38;color:#a4eac7;border-radius:999px;display:inline-flex;padding:4px 11px;font-size:12px;font-weight:800}
+.profile-account-tag.guest{border-color:#796b50;background:#362f25;color:#e0c891}
+.profile-rule{height:1px;background:#3d5068;margin:0 30px}
+.profile-body{padding:27px 30px 32px}
+.profile-heading{font-weight:800;font-size:19px;color:#f5f2ed;margin:0 0 17px}
+.profile-columns{display:grid;grid-template-columns:190px 1fr;gap:22px;align-items:stretch;margin-bottom:24px}
+.profile-win-card{border-radius:15px;border:1px solid #566a72;background:linear-gradient(140deg,#1d3b40,#18283d);padding:22px 15px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.profile-ring{width:125px;height:125px;border-radius:50%;background:conic-gradient(#e2c28f calc(var(--p)*1%),#405168 0);display:grid;place-items:center;position:relative;isolation:isolate;margin:0 0 16px}
+.profile-ring:before{content:"";position:absolute;inset:12px;background:#1a2c3d;border-radius:50%;z-index:-1}
+.profile-ring strong{font-size:31px;color:#f6e0bb}
+.profile-win-card small{font-size:12px;color:#acbdd2;text-align:center;line-height:1.5}
+.profile-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.profile-stat{background:#1f2e43;border:1px solid #41556c;border-radius:13px;padding:14px;min-width:0}
+.profile-stat .value{display:block;font-size:clamp(23px,3vw,31px);font-weight:900;font-variant-numeric:tabular-nums;line-height:1.2;color:#f4d6a4;direction:ltr;text-align:right}
+.profile-stat .name{display:block;font-size:12px;color:#b3c1d5;margin-top:9px}
+.profile-medals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:10px}
+.profile-medal{display:flex;align-items:center;gap:12px;background:#1d2b40;border:1px solid #3f5167;border-radius:13px;padding:14px 13px}
+.profile-medal .medal-symbol{font-size:26px;color:#d8b977}
+.profile-medal strong{display:block;font-size:22px;color:#f2e0c2;line-height:1.2}
+.profile-medal small{display:block;color:#abbcd2;font-size:11px}
+.profile-notice{margin-top:20px;background:#142b39;border:1px solid #365663;border-radius:13px;padding:14px 16px;color:#bacee2;line-height:1.8;font-size:13px}
+.profile-notice strong{color:#f3dfb7}
+.profile-empty{background:#1a2b3d;border:1px dashed #52657a;padding:30px 16px;text-align:center;border-radius:14px;color:#bdcede;line-height:1.9}
+.profile-foot{text-align:left;padding-top:15px;color:#7f95af;font-size:11px;letter-spacing:.5px}
+.cheater-note{color:#e6b68c;font-size:13px;line-height:1.8;padding:10px 14px;background:#422c2b;border:1px solid #785148;border-radius:10px;margin-top:12px}
+@media(max-width:620px){.profile-backdrop{padding:8px}.profile-panel{border-radius:17px}.profile-head{padding:18px 17px 0}.profile-cover{padding:18px;gap:14px}.profile-avatar{width:76px;height:76px;border-radius:19px}.profile-avatar>span{font-size:32px;border-radius:15px}.profile-body{padding:20px 16px}.profile-rule{margin:0 17px}.profile-columns{grid-template-columns:1fr}.profile-ring{height:107px;width:107px}.profile-win-card{padding:17px}.profile-grid{gap:7px}.profile-stat{padding:12px 9px}.profile-stat .name{font-size:11px}.profile-medals{gap:7px}.profile-medal{gap:6px;padding:12px 8px}.profile-medal .medal-symbol{font-size:20px}.profile-medal strong{font-size:19px}.profile-medal small{font-size:10px}}
 </style>
 </head>
 <body>
@@ -44,7 +90,7 @@
   const KEY = 'sb_publishable_PI3YMLtabVAqqYpeCEoEvA_uZ5vP3vU';
   const main = document.querySelector('#main');
   const toast = document.querySelector('#toast');
-  const statusLabels = {waiting:'في الانتظار',running:'جارية',closed:'مغلقة',in_progress:'قيد الاختبار',finished:'مكتمل',cheated:'مستبعد'};
+  const statusLabels = {waiting:'في الانتظار',running:'جارية',closed:'مغلقة',in_progress:'قيد الاختبار',finished:'مكتمل',cheated:'غشاش 👀'};
   const icons = {
     time: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>',
     users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 11a3 3 0 0 0 0-6M18 14a6 6 0 0 1 3 6"/></svg>',
@@ -58,7 +104,8 @@
   let hostToken = '', playerToken = '', hostEntry = '', busy = false, fetching = false, questionIndex = 0, finalConfirm = false;
   let offset = 0, lastHeartbeat = 0, activeQuiz = false, lastAlert = 0, ended = false, lastServerStatus = '', channel = null;
   let timerId = null, blurTimer = null, pollTimer = null;
-  const rules = () => `<div class="rules"><div class="rule"><b>10 أسئلة</b><small>اختيارات متعددة لكل سؤال</small></div><div class="rule"><b>30 دقيقة</b><small>من البداية الرسمية</small></div><div class="rule"><b>100 نقطة</b><small>10 نقاط لكل إجابة صحيحة</small></div></div><div class="notice"><strong>سياسة نزاهة المنافسة.</strong> عند بدء الحل، مغادرة الصفحة أو الانتقال لتطبيق آخر أو تحديث المتصفح تؤدي إلى استبعاد المحاولة بنتيجة صفر. قد تحدث حالات استبعاد غير مقصودة، ولا يمكن لمتصفح الويب منع الغش بنسبة 100%.</div>`;
+  let profileUI={open:false,name:'',accountId:'',loading:false,data:null,error:''};
+  const rules = () => `<div class="rules"><div class="rule"><b>10 أسئلة</b><small>اختيارات متعددة لكل سؤال</small></div><div class="rule"><b>30 دقيقة</b><small>من البداية الرسمية</small></div><div class="rule"><b>100 نقطة</b><small>10 نقاط لكل إجابة صحيحة</small></div></div><div class="notice"><strong>سياسة نزاهة المنافسة.</strong> عند بدء الحل، مغادرة الصفحة أو الانتقال لتطبيق آخر أو تحديث المتصفح تؤدي إلى ظهور حالة «غشاش 👀» ودرجة صفر بروح المنافسة. قد تسبب بعض الانقطاعات التقنية هذا التنبيه بالخطأ، ولا يمكن لمتصفح الويب منع الغش بنسبة 100%.</div>`;
   function notify(text, good = false) {
     toast.textContent = text;
     toast.style.background = good ? '#28493e' : '#452d38'; toast.hidden = false;
@@ -77,15 +124,15 @@
   function status(v){return `<span class="state-pill ${escape(v)}">${escape(statusLabels[v]||v)}</span>`;}
   function standings(){const players = current?.players || []; const winners=players.filter(x=>x.status==='finished').slice(0,3);
     let podium=''; if(winners.length){podium='<div class="podium">'+[1,0,2].map(i=>winners[i]?`<div class="podium-item ${i===0?'first':''}"><span class="podium-medal">${['I','II','III'][i]}</span><span class="podium-name">${escape(winners[i].name)}</span><span class="podium-points">${winners[i].score}<small>/100</small></span></div>`:'<div></div>').join('')+'</div>';}
-    const rows=players.map(p=>`<tr><td><span class="rank-no">${escape(p.rank)}</span></td><td>${escape(p.name)}${current?.player?.name===p.name?' <small class="muted">(أنت)</small>':''}</td><td>${status(p.status)}</td><td><span class="score">${p.score===null?'—':escape(p.score)}</span></td></tr>`).join('');
+    const rows=players.map(p=>`<tr><td><span class="rank-no">${escape(p.rank)}</span></td><td>${`<button type="button" class="profile-name-trigger" data-action="profile-player" data-name="${escape(p.name)}" data-account="${escape(p.account_id||'')}" aria-label="عرض بطاقة إنجازات ${escape(p.name)}">${escape(p.name)} <span class="profile-open-icon">↗</span></button>`}${current?.player?.name===p.name?' <small class="muted">(أنت)</small>':''}</td><td>${status(p.status)}</td><td><span class="score">${p.score===null?'—':escape(p.score)}</span></td></tr>`).join('');
     return card(`<div class="panel-head"><div><div class="eyebrow">نتائج هذه الغرفة فقط</div><h3>لوحة المتصدرين</h3></div><span class="muted">${players.length} مشارك</span></div>${podium}${players.length?`<div class="table-wrap"><table><thead><tr><th>الترتيب</th><th>المشارك</th><th>الحالة</th><th>النقاط</th></tr></thead><tbody>${rows}</tbody></table></div>`:'<div class="empty"><svg viewBox="0 0 48 48" fill="none" stroke-width="1.5"><path d="M8 42h32M13 37h22V16H13zM24 16V7M19 7h10M6 16H2v6c0 6 6 9 11 9M42 16h4v6c0 6-6 9-11 9"/></svg>بانتظار أول مشاركة. شارك رابط الدعوة مع المجموعة.</div>'}`,'board');
   }
   function invite(){const url=window.location.origin+window.location.pathname+'?room='+encodeURIComponent(roomId);return `<div class="invite"><div class="eyebrow">دعوة المجموعة</div><h3>رابط واحد لجميع المشاركين</h3><p class="muted">أرسل الرابط لأي عدد من أصدقائك؛ كل شخص يدخل باسمه ونتائجه تظهر ضمن هذه الغرفة فقط.</p><div class="invite-row"><input id="share-url" class="input" readonly aria-label="رابط دعوة المجموعة" value="${escape(url)}">${btn('copy-link','نسخ الرابط','secondary sm')}${btn('whatsapp','واتساب','sm')}</div><div class="inviting">لا يتضمن الرابط مفتاح الإدارة، ويمكن فتحه من أي جهاز.</div></div>`;}
-  function roomHeader(){const room=current?.room;if(!room)return '';return `<div class="room-top"><div class="panel-head"><div><div class="eyebrow">${room.mode==='live'?'LIVE CHAMPIONSHIP':'OPEN CHALLENGE'} / الجولة ${escape(room.round)}</div><h1>${escape(room.title)}</h1><p class="subtitle">${room.mode==='live'?'بطولة بوقت انطلاق موحّد لجميع المسجلين':'ابدأ في الوقت المناسب لك، وشارك نفس ترتيب مجموعتك'}</p></div><span class="mode-status">${room.mode==='live'?'بطولة مباشرة':'تحدٍ مفتوح'} · ${escape(statusLabels[room.status]||room.status)}</span></div></div>`;}
+  function roomHeader(){const room=current?.room;if(!room)return '';return `<div class="room-top"><div class="panel-head"><div><div class="eyebrow">${room.mode==='live'?'LIVE CHAMPIONSHIP':'OPEN CHALLENGE'} / الجولة ${escape(room.round)}</div><h1>${escape(room.title)}</h1><p class="subtitle">${room.mode==='live'?'بطولة بوقت انطلاق موحّد لجميع المسجلين':'ابدأ في الوقت المناسب لك، وشارك نفس ترتيب مجموعتك'}</p></div><div class="fline" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><span class="mode-status">${room.mode==='live'?'بطولة مباشرة':'تحدٍ مفتوح'} · ${escape(statusLabels[room.status]||room.status)}</span>${current?.player&&current.player.status!=='in_progress'?`<button type="button" data-action="profile-self" class="profile-button">بطاقة إنجازاتي ↗</button>`:''}</div></div></div>`;}
   function room(){if(!current)return `<section class="boot"><div class="spinner"></div>جارٍ الاتصال بالغرفة</section>`;
     const r=current.room, p=current.player;
     let mainArea='';
-    if(!p){const disabled=r.status==='closed'||(r.mode==='live'&&r.status!=='waiting');mainArea=card(`<div class="eyebrow">التسجيل في المنافسة</div><h2>سجّل مشاركتك</h2><p class="muted">اختر اسمًا ظاهرًا لباقي المشاركين في لوحة النتائج.</p><form id="join-form"><label class="form-label" for="player-name">اسم المشارك</label><input id="player-name" class="input" name="name" minlength="2" maxlength="40" autocomplete="name" required placeholder="الاسم الكامل أو اسم الشهرة" value="${escape(joinName)}"><label class="agree"><input id="agree-rules" type="checkbox" ${accepted?'checked':''}>أوافق على ضوابط المسابقة وسياسة الاستبعاد عند مغادرة صفحة الحل.</label><button type="submit" class="btn block" ${disabled||!accepted||busy?'disabled':''}>الانضمام إلى المنافسة ←</button>${disabled?'<p class="hint">التسجيل مغلق حاليًا؛ تابع النتائج أو انتظر الجولة القادمة.</p>':''}</form>`);
+    if(!p){const disabled=r.status==='closed'||(r.mode==='live'&&r.status!=='waiting');mainArea=card(`<div class="eyebrow">التسجيل في المنافسة</div><h2>سجّل مشاركتك</h2><p class="muted">اختر اسمًا ظاهرًا لباقي المشاركين في لوحة النتائج.</p><form id="join-form"><label class="form-label" for="player-name">اسم المشارك</label><input id="player-name" class="input" name="name" minlength="2" maxlength="40" autocomplete="name" required placeholder="الاسم الكامل أو اسم الشهرة" value="${escape(joinName)}"><label class="agree"><input id="agree-rules" type="checkbox" ${accepted?'checked':''}>أوافق على ضوابط المسابقة وسياسة «غشاش 👀» عند مغادرة صفحة الحل.</label><button type="submit" class="btn block" ${disabled||!accepted||busy?'disabled':''}>الانضمام إلى المنافسة ←</button>${disabled?'<p class="hint">التسجيل مغلق حاليًا؛ تابع النتائج أو انتظر الجولة القادمة.</p>':''}</form>`);
     }else if(p.status==='waiting'){mainArea=card(`<div class="waiting"><div class="eyebrow">تم تأكيد مشاركتك</div><div class="waiting-symbol">◇</div><h2>${escape(p.name)}</h2><p>${r.mode==='live'?'المنافسة في انتظار إشارة بدء المنظّم. ستظهر الأسئلة تلقائيًا للجميع عند إطلاق الجولة.':'يمكنك بدء اختبارك الآن. يبدأ الوقت عند الضغط على زر البداية.'}</p>${r.mode==='open'?btn('start','بدء الاختبار — 30 دقيقة ←','',busy):'<span class="mode-status">في انتظار بدء البطولة</span>'}</div>`);
     }else if(p.status==='in_progress' && !(p.questions||[]).length){mainArea=card(`<div class="waiting"><div class="eyebrow">الاستعداد للجولة</div><div class="waiting-symbol">◇</div><h2>استعد للانطلاق</h2><p>سيبدأ الاختبار لجميع المشاركين خلال</p><div class="result-score" id="start-time">10</div><p class="hint">يرجى إبقاء الصفحة مفتوحة.</p></div>`);
     }else if(p.status==='in_progress')return quiz();else return result();
@@ -96,19 +143,85 @@
     const options=q.options.map((v,i)=>`<button type="button" class="option ${p.answers[questionIndex]===i?'selected':''}" data-action="answer" data-index="${i}" ${busy?'disabled':''}><span>${['أ','ب','ج','د'][i]}</span>${escape(v)}</button>`).join('');
     const jumps=Array.from({length:10},(_,i)=>`<button class="q-jump ${i===questionIndex?'active':''} ${p.answers[i]!==null&&p.answers[i]!==undefined?'answered':''}" data-action="jump" data-index="${i}" aria-label="السؤال ${i+1}">${i+1}</button>`).join('');
     const now=Math.max(0,Math.ceil((Date.parse(p.deadline)-Date.now()-offset)/1000));
-    return `<div class="quiz-wrap"><div class="quiz-top"><div><div class="eyebrow">${escape(current.room.title)}</div><h2>اختبار ${escape(p.name)}</h2><p class="muted">النموذج الذهني · سؤال ${questionIndex+1} من 10</p></div><div class="quiz-timer" id="timer-box"><small>الوقت المتبقي</small><b id="time-left" dir="ltr">${formatTime(now)}</b></div></div><div class="quiz-progress"><span>التقدم: ${answered} / 10</span><span>10 نقاط لكل سؤال</span></div><progress class="progress" max="10" value="${answered}"></progress><div class="question-map">${jumps}</div>${card(`<div class="eyebrow">${escape(q.category || 'استدلال ذهني')}</div><h2>${escape(q.prompt)}</h2>${q.svg?`<div class="diagram">${q.svg}</div>`:''}<div class="options">${options}</div><div class="question-actions">${btn('prev','السابق →','secondary',questionIndex===0||busy)}${questionIndex<9?btn('next','التالي ←','',busy):btn('confirm-finish','تسليم الإجابات','',busy)}</div><div style="margin-top:12px">${btn('confirm-finish','إنهاء وتسليم الآن','text sm',busy)}</div>`,'question-card')}<div class="notice">تُحسب الإجابات غير المُجاب عنها خطأً. بعد التسليم لا يُسمح بتعديل النتيجة. مغادرة هذه الصفحة أثناء الاختبار تؤدي للاستبعاد.</div>${finalConfirm?`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true"><div class="eyebrow">التسليم النهائي</div><h2>تأكيد إنهاء الاختبار</h2><p>أجبت عن ${answered} من أصل 10 أسئلة. هل ترغب في اعتماد إجاباتك الآن؟</p><div class="actions">${btn('finish','تأكيد التسليم')}${btn('cancel-finish','متابعة الإجابة','secondary')}</div></section></div>`:''}</div>`;
+    return `<div class="quiz-wrap"><div class="quiz-top"><div><div class="eyebrow">${escape(current.room.title)}</div><h2>اختبار ${escape(p.name)}</h2><p class="muted">النموذج الذهني · سؤال ${questionIndex+1} من 10</p></div><div class="quiz-timer" id="timer-box"><small>الوقت المتبقي</small><b id="time-left" dir="ltr">${formatTime(now)}</b></div></div><div class="quiz-progress"><span>التقدم: ${answered} / 10</span><span>10 نقاط لكل سؤال</span></div><progress class="progress" max="10" value="${answered}"></progress><div class="question-map">${jumps}</div>${card(`<div class="eyebrow">${escape(q.category || 'استدلال ذهني')}</div><h2>${escape(q.prompt)}</h2>${q.svg?`<div class="diagram">${q.svg}</div>`:''}<div class="options">${options}</div><div class="question-actions">${btn('prev','السابق →','secondary',questionIndex===0||busy)}${questionIndex<9?btn('next','التالي ←','',busy):btn('confirm-finish','تسليم الإجابات','',busy)}</div><div style="margin-top:12px">${btn('confirm-finish','إنهاء وتسليم الآن','text sm',busy)}</div>`,'question-card')}<div class="notice">تُحسب الإجابات غير المُجاب عنها خطأً. بعد التسليم لا يُسمح بتعديل النتيجة. مغادرة هذه الصفحة أثناء الاختبار تُظهر حالة «غشاش 👀» ودرجة صفر.</div>${finalConfirm?`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true"><div class="eyebrow">التسليم النهائي</div><h2>تأكيد إنهاء الاختبار</h2><p>أجبت عن ${answered} من أصل 10 أسئلة. هل ترغب في اعتماد إجاباتك الآن؟</p><div class="actions">${btn('finish','تأكيد التسليم')}${btn('cancel-finish','متابعة الإجابة','secondary')}</div></section></div>`:''}</div>`;
   }
-  function result(){const p=current.player,failed=p.status==='cheated';return `<div class="room-page">${card(`<div class="result-ornament">${failed?'×':'◇'}</div><div class="overline">النتيجة النهائية · ${escape(current.room.title)}</div><h1>${failed?'تم استبعاد المحاولة':'اكتملت مشاركتك بنجاح'}</h1><p class="muted">${failed?escape(p.reason||'مغادرة صفحة الاختبار أثناء الحل'):escape(p.name)+'، تم تصحيح إجاباتك وتسجيل نتيجتك في المجموعة.'}</p><div class="result-score">${escape(p.score??0)}<small>/100</small></div><p class="muted">النموذج ${String(p.model).padStart(2,'0')} · الجولة ${escape(current.room.round)}</p><div class="btn-row">${btn('show-board','عرض ترتيب المجموعة')}${btn('home','إنشاء تحدٍ جديد','secondary')}</div>`,'result')}<div class="section">${standings()}${invite()}</div></div>`;}
+  function result(){const p=current.player,failed=p.status==='cheated';return `<div class="room-page">${card(`<div class="result-ornament">${failed?'×':'◇'}</div><div class="overline">النتيجة النهائية · ${escape(current.room.title)}</div><h1>${failed?'غشاش 👀 — اتقفشت!':'اكتملت مشاركتك بنجاح'}</h1><p class="muted">${failed?'ظهر تنبيه المغادرة أثناء الحل، وبالتالي أصبحت درجتك صفرًا حسب قواعد الجولة.':escape(p.name)+'، تم تصحيح إجاباتك وتسجيل نتيجتك في المجموعة.'}</p>${failed?'<div class="cheater-note">الاسم على سبيل المزاح بين الأصدقاء، وليس اتهامًا مؤكدًا: أحيانًا تتسبب الإشعارات أو انقطاعات الاتصال في هذا التنبيه.</div>':''}<div class="result-score">${escape(p.score??0)}<small>/100</small></div><p class="muted">النموذج ${String(p.model).padStart(2,'0')} · الجولة ${escape(current.room.round)}</p><div class="btn-row">${btn('show-board','عرض ترتيب المجموعة')}${btn('profile-self','بطاقة إنجازاتي','secondary')}${btn('home','إنشاء تحدٍ جديد','secondary')}</div>`,'result')}<div class="section">${standings()}${invite()}</div></div>`;}
   function host(){if(!current){return `<div class="boot"><div class="spinner"></div>جارٍ التحقق من بيانات الغرفة</div>`;}
     const r=current.room, players=current.players||[],hp=current.host_players||[];
     const controls=`${r.mode==='live'&&r.status==='waiting'?btn('host-start','بدء البطولة الآن','',busy||!players.length):''}${btn('host-close','إغلاق التسجيل','secondary',busy||r.status==='closed')}${btn('host-reset','فتح جولة جديدة','secondary',busy||players.some(x=>x.status==='in_progress'))}${btn('download','تصدير النتائج CSV','secondary',!hp.length)}${btn('participant','عرض صفحة اللاعبين','text')}`;
     const rows=hp.map(p=>`<tr><td>${escape(p.name)}</td><td>${String(p.model).padStart(2,'0')}</td><td>${p.score===null?'—':escape(p.score)}</td><td>${status(p.status)}</td></tr>`).join('');
-    return `<div class="room-page">${roomHeader()}<div class="grid"><div>${card(`<div class="eyebrow">صلاحيات المنظّم</div><h2>إدارة البطولة</h2><p class="muted">${r.mode==='live'?'يمكنك بدء البطولة بعد انضمام جميع المشاركين؛ يبدأ عدّ تنازلي موحّد لمدة 10 ثوانٍ.':'كل مشارك يبدأ الاختبار في الوقت الذي يختاره، وتظهر درجته فور التسليم.'}</p><div class="host-controls">${controls}</div><div class="stats"><div class="stat"><b>${players.length}</b><small>مشارك</small></div><div class="stat"><b>${players.filter(x=>x.status==='finished').length}</b><small>أكمل</small></div><div class="stat"><b>${players.filter(x=>x.status==='cheated').length}</b><small>مستبعد</small></div></div><h3>تفاصيل المشاركين</h3>${hp.length?`<div class="table-wrap"><table><thead><tr><th>الاسم</th><th>النموذج</th><th>الدرجة</th><th>الحالة</th></tr></thead><tbody>${rows}</tbody></table></div>`:'<p class="muted">لا يوجد مشاركون حتى الآن.</p>'}<details class="details"><summary>مفتاح استعادة الغرفة</summary><p class="hint">احتفظ بهذا المفتاح في مكان آمن. لا ترسله مع رابط دعوة المشاركين.</p><input class="input" id="host-secret" type="password" readonly value="${escape(hostToken)}">${btn('copy-host','نسخ مفتاح المنظّم','text sm')}</details>`)}</div><aside>${invite()}${card(`<h3>خطوات البطولة</h3><p class="muted" style="margin-top:10px">1. أنشئ الغرفة وانسخ الرابط.<br>2. انتظر تسجيل المشاركين.<br>3. اضغط بدء البطولة (للوضع المباشر).<br>4. تابع النتائج وصدّر التقرير عند انتهاء الجولة.</p>`)}</aside></div><div class="section">${standings()}</div></div>`;
+    return `<div class="room-page">${roomHeader()}<div class="grid"><div>${card(`<div class="eyebrow">صلاحيات المنظّم</div><h2>إدارة البطولة</h2><p class="muted">${r.mode==='live'?'يمكنك بدء البطولة بعد انضمام جميع المشاركين؛ يبدأ عدّ تنازلي موحّد لمدة 10 ثوانٍ.':'كل مشارك يبدأ الاختبار في الوقت الذي يختاره، وتظهر درجته فور التسليم.'}</p><div class="host-controls">${controls}</div><div class="stats"><div class="stat"><b>${players.length}</b><small>مشارك</small></div><div class="stat"><b>${players.filter(x=>x.status==='finished').length}</b><small>أكمل</small></div><div class="stat"><b>${players.filter(x=>x.status==='cheated').length}</b><small>غشاش 👀</small></div></div><h3>تفاصيل المشاركين</h3>${hp.length?`<div class="table-wrap"><table><thead><tr><th>الاسم</th><th>النموذج</th><th>الدرجة</th><th>الحالة</th></tr></thead><tbody>${rows}</tbody></table></div>`:'<p class="muted">لا يوجد مشاركون حتى الآن.</p>'}<details class="details"><summary>مفتاح استعادة الغرفة</summary><p class="hint">احتفظ بهذا المفتاح في مكان آمن. لا ترسله مع رابط دعوة المشاركين.</p><input class="input" id="host-secret" type="password" readonly value="${escape(hostToken)}">${btn('copy-host','نسخ مفتاح المنظّم','text sm')}</details>`)}</div><aside>${invite()}${card(`<h3>خطوات البطولة</h3><p class="muted" style="margin-top:10px">1. أنشئ الغرفة وانسخ الرابط.<br>2. انتظر تسجيل المشاركين.<br>3. اضغط بدء البطولة (للوضع المباشر).<br>4. تابع النتائج وصدّر التقرير عند انتهاء الجولة.</p>`)}</aside></div><div class="section">${standings()}</div></div>`;
   }
   function authHost(){return `<div class="room-page">${card(`<div class="eyebrow">دخول المنظّم</div><h2>استعادة إدارة الغرفة</h2><p class="muted">لا يمكن إدارة الغرفة باستخدام رابط المشاركين فقط. أدخل مفتاح المنظّم الذي احتفظت به عند الإنشاء.</p><form id="host-form"><label class="form-label" for="host-input">مفتاح المنظّم</label><input id="host-input" type="password" class="input" value="${escape(hostEntry)}" minlength="64" maxlength="64" required placeholder="رمز الأمان الخاص بالغرفة"/><button class="btn block" type="submit" style="margin-top:18px">الدخول إلى الإدارة</button></form><div style="margin-top:15px">${btn('participant','صفحة المشاركين','secondary sm')}</div>`,'auth')}</div>`;}
   function formatTime(s){return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;}
   function statePage(){if(screen==='home')return 'home';if(screen==='host')return 'host';if(!current)return 'loading';const p=current.player;if(p?.status==='in_progress'&&(p.questions||[]).length)return 'quiz';if(p&&['finished','cheated'].includes(p.status))return 'result';return 'lobby';}
-  function render(){const prior=document.activeElement;const keepForm=prior?.tagName==='INPUT'&&prior.closest('form')&& screen!=='quiz'; if(keepForm && !busy)return;const target=statePage(); main.innerHTML=target==='home'?home():target==='host'?(hostToken?host():authHost()):target==='quiz'?quiz():target==='result'?result():room(); lastServerStatus=target;updateClock();}
+
+  function statNum(value){const v=Number(value);return Number.isFinite(v)?Math.max(0,v):0;}
+  function profileModal(){
+    const p=profileUI;
+    const d=p.data;
+    const guest=!p.accountId;
+    const privateRecord=d?.private;
+    const localStanding=(current?.players||[]).find(v=>v.name===p.name);
+    const total=guest?(localStanding&&['finished','cheated'].includes(localStanding.status)?1:0):statNum(d?.total_played);
+    const finished=guest?(localStanding?.status==='finished'?1:0):statNum(d?.finished);
+    const naughty=guest?(localStanding?.status==='cheated'?1:0):statNum(d?.excluded);
+    const gold=guest?0:statNum(d?.first_place),silver=guest?0:statNum(d?.second_place),bronze=guest?0:statNum(d?.third_place);
+    const winrate=guest?0:Math.min(100,statNum(d?.win_rate));
+    const best=guest?localStanding?.status==='finished'?statNum(localStanding.score):0:statNum(d?.best_score);
+    const average=guest?localStanding?.status==='finished'?statNum(localStanding.score):0:statNum(d?.avg_score);
+    const avatar=escape((d?.nickname||p.name||'؟').trim().slice(0,1));
+    const metrics=p.loading?'<div class="profile-empty"><div class="spinner" style="margin:auto"></div>جارٍ تحميل سجل الإنجازات من الخادم…</div>':
+      p.error?`<div class="profile-empty">${escape(p.error)}</div>`:
+      privateRecord?'<div class="profile-empty">صاحب البطاقة اختار إخفاء سجل إنجازاته عن باقي اللاعبين. احترم خصوصيته.</div>':
+      `<div class="profile-columns">
+        <div class="profile-win-card"><div class="profile-ring" style="--p:${winrate}"><strong>${guest?'—':winrate+'%'}</strong></div><strong>نسبة الفوز</strong><small>${guest?'تظهر بعد تفعيل الحساب الدائم':'من الجولات التنافسية المكتملة'}</small></div>
+        <div class="profile-grid">
+          <div class="profile-stat"><span class="value">${total}</span><span class="name">إجمالي المشاركات</span></div>
+          <div class="profile-stat"><span class="value">${finished}</span><span class="name">محاولات مكتملة</span></div>
+          <div class="profile-stat"><span class="value">${naughty}</span><span class="name">مرات «غشاش 👀»</span></div>
+          <div class="profile-stat"><span class="value">${guest?'—':statNum(d?.competitive_rounds)}</span><span class="name">بطولات تنافسية</span></div>
+          <div class="profile-stat"><span class="value">${guest&& !finished?'—':average}</span><span class="name">متوسط الدرجات</span></div>
+          <div class="profile-stat"><span class="value">${guest&& !finished?'—':best}</span><span class="name">أفضل نتيجة / 100</span></div>
+        </div>
+      </div><h3 class="profile-heading">منصة التتويج</h3>
+      <div class="profile-medals">
+       <div class="profile-medal"><span class="medal-symbol">Ⅰ</span><span><strong>${guest?'—':gold}</strong><small>المركز الأول</small></span></div>
+       <div class="profile-medal"><span class="medal-symbol">Ⅱ</span><span><strong>${guest?'—':silver}</strong><small>المركز الثاني</small></span></div>
+       <div class="profile-medal"><span class="medal-symbol">Ⅲ</span><span><strong>${guest?'—':bronze}</strong><small>المركز الثالث</small></span></div>
+      </div>
+      <div class="profile-notice">${guest?
+        '<strong>بطاقة ضيف مؤقتة.</strong> تعرض مشاركتك الظاهرة في هذه الجولة فقط. لا يتم جمع إنجازاتك من غرف أو أجهزة أخرى إلى أن نفعّل الدخول الآمن بحساب Google على استضافة مستقلة.':
+        '<strong>سجل تراكمي موثّق.</strong> تُحسب المراكز اعتمادًا على اللاعبين الذين أنهوا الجولة، ولا نحتسب المركز الأول كفوز تنافسي إلا إذا أنهى الجولة لاعبان على الأقل.'}
+      </div>`;
+    return `<div class="profile-backdrop" data-action="profile-close-backdrop">
+      <section class="profile-panel" role="dialog" aria-modal="true" aria-labelledby="profile-title">
+        <div class="profile-head"><span class="profile-overline">IQ LEAGUE / PLAYER DOSSIER</span><button type="button" class="profile-exit" data-action="profile-close" aria-label="إغلاق بطاقة اللاعب">إغلاق ×</button></div>
+        <div class="profile-cover">
+          <div class="profile-avatar" aria-hidden="true"><span>${avatar}</span></div>
+          <div class="profile-identity"><span class="profile-account-tag ${guest?'guest':''}">${guest?'مشارك كضيف':p.loading?'جارٍ التحقق':privateRecord?'سجل خاص':'لاعب بحساب موثّق'}</span><h2 id="profile-title">${escape(d?.nickname||p.name)}</h2><p>بطاقة اللاعب · إنجازات ومسيرة المنافسات</p></div>
+        </div><div class="profile-rule"></div><div class="profile-body"><h3 class="profile-heading">سجل الأداء</h3>${metrics}<div class="profile-foot">IQ LEAGUE — سجل الأداء يعرض الأرقام فقط، دون البريد الإلكتروني أو بيانات Google.</div></div>
+      </section>
+    </div>`;
+  }
+  async function showProfile(name,accountId=''){
+    if(activeQuiz){notify('ملف الإنجازات متاح بعد إنهاء الاختبار حتى لا تتشتت.');return;}
+    profileUI={open:true,name:String(name||'لاعب'),accountId:String(accountId||''),loading:!!accountId,data:null,error:''};
+    render();
+    if(!accountId)return;
+    const viewing=profileUI;
+    if(!playerToken&&!hostToken){viewing.loading=false;viewing.error='يجب أن تكون مشاركًا في الغرفة لعرض سجل اللاعب.';render();return;}
+    try{
+      const u=API.replace(/\/challenge_portal$/, '/challenge_account_action');
+      const res=await fetch(u,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify({_action:'profile',_room:roomId,_player_token:playerToken||hostToken,_target:accountId}),cache:'no-store'});
+      const d=await res.json();
+      if(!res.ok)throw Error(d.message||d.error||'تعذر تحميل سجل اللاعب');
+      viewing.data=d;
+    }catch(ex){viewing.error=ex.message||'تعذر تحميل سجل اللاعب';}
+    finally{viewing.loading=false;if(profileUI===viewing)render();}
+  }
+
+  function render(){const prior=document.activeElement;const keepForm=prior?.tagName==='INPUT'&&prior.closest('form')&& screen!=='quiz'; if(keepForm && !busy)return;const target=statePage(); main.innerHTML=target==='home'?home():target==='host'?(hostToken?host():authHost()):target==='quiz'?quiz():target==='result'?result():room(); lastServerStatus=target;if(profileUI.open)main.insertAdjacentHTML('beforeend',profileModal());updateClock();}
   function updateClock(){const p=current?.player;if(p?.status==='in_progress'&&p.deadline){const seconds=Math.max(0,Math.ceil((Date.parse(p.deadline)-Date.now()-offset)/1000)); const el=document.getElementById('time-left');if(el){el.textContent=formatTime(seconds);if(seconds<120)document.getElementById('timer-box')?.classList.add('warning');}if(seconds===0&&!ended&&!busy){ended=true;void act('finish').finally(()=>ended=false);}}
    const pre=document.getElementById('start-time');if(pre&&current?.room?.starts_at){pre.textContent=Math.max(0,Math.ceil((Date.parse(current.room.starts_at)-Date.now()-offset)/1000));}
   }
@@ -138,6 +251,9 @@
   const shareUrl=()=>location.origin+location.pathname+'?room='+encodeURIComponent(roomId);
   function csv(){const ps=current?.host_players||[];if(!ps.length)return notify('لا توجد نتائج للتصدير');const fields=['name','model','score','status','started_at','finished_at','cheat_events'];const clean=value=>{const s=String(value??'');return '"'+(/^[=+\-@\t\r]/.test(s)?"'":'')+s.replace(/"/g,'""')+'"';};const lines=[fields.join(','),...ps.map(p=>fields.map(f=>clean(p[f])).join(','))].join('\r\n');const blob=new Blob(['\uFEFF'+lines],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`iq-league-${roomId.slice(0,8)}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1200);}
   main.addEventListener('click',async event=>{const control=event.target.closest('[data-action]');if(!control||control.disabled)return;event.preventDefault();const a=control.dataset.action;
+    if(a==='profile-close'||a==='profile-close-backdrop'){if(a==='profile-close'||event.target===control){profileUI.open=false;render();}return;}
+    if(a==='profile-self'){const p=current?.player;if(p){const entry=(current?.players||[]).find(x=>x.name===p.name);await showProfile(p.name,entry?.account_id||'');}return;}
+    if(a==='profile-player'){await showProfile(control.dataset.name||'',control.dataset.account||'');return;}
     if(a==='create'||a==='open-mode'||a==='live-mode'){createOpen=true;if(a==='open-mode')mode='open';if(a==='live-mode')mode='live';render();return;}
     if(a==='close-modal'){createOpen=false;render();return;}
     if(a==='select-open'||a==='select-live'){mode=a==='select-open'?'open':'live';render();return;}
@@ -165,6 +281,7 @@
   main.addEventListener('submit',async ev=>{ev.preventDefault();if(ev.target.id==='create-form')await create();if(ev.target.id==='join-form'){if(!accepted)return notify('يجب قبول قواعد التحدي أولًا.');joinName=main.querySelector('#player-name')?.value.trim()||'';if(joinName.length<2||joinName.length>40)return notify('اختر اسمًا من حرفين إلى أربعين حرفًا.');await act('join',{name:joinName});}if(ev.target.id==='host-form'){hostEntry=main.querySelector('#host-input')?.value.trim()||'';if(hostEntry.length!==64)return notify('مفتاح الإدارة غير صالح.');hostToken=hostEntry;write('host:'+roomId,hostToken);await refresh(true);}});
   document.querySelector('#brand-home').addEventListener('click',ev=>{ev.preventDefault();go(location.pathname);});
   document.querySelector('#nav-home').addEventListener('click',()=>go(location.pathname));
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&profileUI.open){profileUI.open=false;render();}});
   window.addEventListener('popstate',()=>{if(activeQuiz)detectedExit();route();});
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')detectedExit();});
   window.addEventListener('pagehide',detectedExit);
